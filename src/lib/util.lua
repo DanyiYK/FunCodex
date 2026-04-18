@@ -18,7 +18,7 @@ util.SIMILAR_CHARACTERS = {
 	["З"] = "3",
 }
 util.SPECIAL_SIMILAR_CHARACTERS = {
-	[" "] = "?",
+	[" "] = "?", -- TODO change this to an empty character
 }
 
 util.REGISTERED_CHARMAPS = {
