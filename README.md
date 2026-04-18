@@ -10,3 +10,31 @@ I'm making this small project just to try NeoVim and to see if I like its workfl
 This doesn't mean that it's *useless* though, I mean look at it, if you want to tell someone something but you're not brave enough to do so, just send them a FunCodex message and pretend that you did something ;)
 
 Apart from that, I don't even know if there's already something like this, if so, let me know, I want to specify that I'm not trying to copy anyone, I had this idea on my own but I also acknowledge the fact that the web is vast and it's easy to have similar ideas.
+
+## How to use
+0. Install Lua
+
+1. Clone the repository wherever you want
+```sh
+git clone "https://github.com/DanyiYK/FunCodex/"
+```
+
+2. Go in the src directory
+```sh
+cd ./FunCodex/src
+```
+
+3. Crypt your first message!
+```sh
+lua main.lua crypt "\"The quick brown fox jumps over the lazy dog\" is an English-language pangram – a sentence that contains all 26 letters of the English alphabet.\"" "example"
+CRYPTED TEXT:
+"Тhе quiсk brown fох jumрs оver the lаzy dоg" is аn English-languаgе рangrаm – а sеntеnce that contains all 26 letters of the English alphabet."
+```
+
+4. Decrypt the message
+To decrypt a message, copy the result of the encryption and paste it in the decrypt command, like this:
+```sh
+lua main.lua decrypt "\"Тhе quiсk brown fох jumрs оver the lаzy dоg\" is аn English-languаgе рangrаm – а sеntеnce that contains all 26 letters of the English alphabet."
+DECRYPTED TEXT:
+"example"
+```
