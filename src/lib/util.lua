@@ -47,6 +47,10 @@ util.TEST_CHARACTERS = {
 	["ј"] = "j",
 	["ѕ"] = "ѕ",
 	["ⅼ"] = "l", -- This one is not really similar
+	["𝗆"] = "m", -- Neither this one
+	["𝗍"] = "t", -- Nor this one
+	["𝖿"] = "f", -- guess what? nor this one
+	["𝗅"] = "l", -- and nor this one
 }
 
 util.REGISTERED_CHARMAPS = {
