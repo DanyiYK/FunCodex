@@ -39,4 +39,16 @@ function util.decimal_to_binary(number, size)
 	return return_value
 end
 
+function util.binary_to_decimal(binary_table)
+	local return_value = 0
+
+	for i = #binary_table, 1, -1 do
+		if binary_table[i] == 1 then
+			return_value = return_value + 2 ^ (#binary_table - i)
+		end
+	end
+
+	return return_value
+end
+
 return util
