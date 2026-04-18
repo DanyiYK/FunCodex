@@ -36,7 +36,7 @@ util.LOWER_SIMILAR_CHARACTERS = {
 	["с"] = "c",
 }
 util.SPECIAL_SIMILAR_CHARACTERS = {
-	[" "] = " ", -- TODO change this to an empty character
+	[" "] = " ", -- TODO change this to an empty character
 }
 
 util.REGISTERED_CHARMAPS = {
