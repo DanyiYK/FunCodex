@@ -2,7 +2,12 @@ local util = {}
 
 util.BITS_PER_CHARACTER = 5
 
--- Char maps
+--[[ 
+--Char maps
+--NOTE: apparently Lua does not support utf8 natively
+--this means that a cyrillic character cannot be converted to lowercase or uppercase
+--normally. (Please Lua, add support for UTF-8 ;()
+--]]
 util.UPPER_SIMILAR_CHARACTERS = { -- List of characters that are only similar in uppercase
 	["У"] = "Y",
 	["К"] = "K",
@@ -40,14 +45,25 @@ util.REGISTERED_CHARMAPS = {
 	util.SPECIAL_SIMILAR_CHARACTERS,
 }
 
-util.ENCODABLE_CHARACTERS = (function() -- List of characters that can be encoded
-	local str = "abcdefghijklmnopqrstuvwxyz "
-	local tb = {}
-	for i = 1, str:len() do
-		tb[i] = str:sub(i, i)
-	end
-	return tb
-end)()
+util.ENCODABLE_CHARACTERS = setmetatable(
+	(function() -- List of characters that can be encoded
+		local str = "abcdefghijklmnopqrstuvwxyz "
+		local tb = {}
+		for i = 1, str:len() do
+			tb[i] = str:sub(i, i)
+		end
+		return tb
+	end)(),
+	{
+		__index = function(self, i)
+			if i == util.EMPTY_CHAR_BIT then
+				return ""
+			end
+
+			return "[?]"
+		end,
+	}
+)
 
 util.EMPTY_CHAR_BIT = 28 -- Equal to ""
 
@@ -64,7 +80,6 @@ end
 -- Takes a number and returns a table of 0 and 1s
 function util.decimal_to_binary(number, size)
 	local return_value = {}
-	local x = number
 
 	while number > 0 do
 		table.insert(return_value, number % 2)
