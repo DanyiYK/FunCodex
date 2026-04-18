@@ -47,7 +47,7 @@ function encoder.encode(str, hidden_text)
 
 		_, letter_charmap = util.get_bit(letter)
 
-		if #hidden_text_binary==0 or letter_charmap==nil then
+		if (#hidden_text_binary==0 and #parsing==0) or letter_charmap==nil then
 			return_value = return_value..letter
 			goto continue
 		elseif #parsing==0 then -- Binary chunk is empty, get another one

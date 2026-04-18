@@ -46,27 +46,14 @@ util.REGISTERED_CHARMAPS = {
 }
 
 -- List of characters that can be encoded
-util.ENCODABLE_CHARACTERS = setmetatable(
-	(function()
-		local str = "abcdefghijklmnopqrstuvwxyz "
-		local tb = {}
-		for i = 1, str:len() do
-			tb[i] = str:sub(i, i)
-		end
-		return tb
-	end)(),
-	{
-		--[[	__index = function(self, i)
-			if #self >= i then
-				return rawget(self, i)
-			elseif i == util.EMPTY_CHAR_BIT then
-				return ""
-			end
-
-			return "[?]"
-		end,]]
-	}
-)
+util.ENCODABLE_CHARACTERS = (function()
+	local str = "abcdefghijklmnopqrstuvwxyz "
+	local tb = {}
+	for i = 1, str:len() do
+		tb[i] = str:sub(i, i)
+	end
+	return tb
+end)()
 
 util.EMPTY_CHAR_BIT = 0 -- Equal to ""
 

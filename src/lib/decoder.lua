@@ -32,6 +32,7 @@ function decoder.decode(str)
 		decimal_value = util.binary_to_decimal(binary_table)
 
 		if decimal_value == util.EMPTY_CHAR_BIT then
+			print("Received kill signal: breaking...")
 			break
 		end
 
