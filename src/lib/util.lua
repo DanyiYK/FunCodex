@@ -4,18 +4,31 @@ util.BITS_PER_CHARACTER = 5
 
 -- Char maps
 util.UPPER_SIMILAR_CHARACTERS = { -- List of characters that are only similar in uppercase
+	["У"] = "Y",
+	["К"] = "K",
+	["Е"] = "E",
+	["Х"] = "X",
+	["А"] = "A",
+	["Р"] = "P",
+	["О"] = "O",
+	["С"] = "C",
+
+	-- Exclusive characters
 	["М"] = "M",
 	["Т"] = "T",
 	["Н"] = "H",
 	["В"] = "B",
 	["З"] = "3",
 }
-util.SIMILAR_CHARACTERS = {
-	["М"] = "M",
-	["Т"] = "T",
-	["Н"] = "H",
-	["В"] = "B",
-	["З"] = "3",
+util.LOWER_SIMILAR_CHARACTERS = {
+	["у"] = "y",
+	["к"] = "k",
+	["е"] = "e",
+	["х"] = "x",
+	["а"] = "a",
+	["р"] = "p",
+	["о"] = "o",
+	["с"] = "c",
 }
 util.SPECIAL_SIMILAR_CHARACTERS = {
 	[" "] = "?", -- TODO change this to an empty character
@@ -23,7 +36,7 @@ util.SPECIAL_SIMILAR_CHARACTERS = {
 
 util.REGISTERED_CHARMAPS = {
 	util.UPPER_SIMILAR_CHARACTERS,
-	util.SIMILAR_CHARACTERS,
+	util.LOWER_SIMILAR_CHARACTERS,
 	util.SPECIAL_SIMILAR_CHARACTERS,
 }
 
@@ -88,6 +101,57 @@ function util.binary_to_decimal(binary_table)
 	end
 
 	return return_value
+end
+
+-- Checks a table and returns 0 if the value is a key, 1 if the value is a value
+-- Returns nil if it's neither of those
+function util.key_or_value(tb, value)
+	for k, v in pairs(tb) do
+		if k == value then
+			return 0
+		elseif v == value then
+			return 1
+		end
+	end
+
+	return nil
+end
+
+-- Returns a tuple:
+-- int: value of the bit
+-- table: the dict where the char was found
+--
+-- It can be used both to check if char is encodable and to check its hidden value.
+-- It's fun to think but this logic can be applied to us humans too, we all have a hidden value
+-- we just need an util.get_bit in our life to reveal it.
+function util.get_bit(char)
+	local bit_value
+
+	for _, dict in pairs(util.REGISTERED_CHARMAPS) do
+		bit_value = util.key_or_value(dict, char)
+
+		if bit_value then
+			return bit_value, dict
+		end
+	end
+
+	return nil
+end
+
+-- Returns a tuple:
+-- int: the amount of bits available
+-- int: the amount of characters that can be stored
+function util.get_available_space(str)
+	local count = 0
+	local letter
+
+	for i = 1, str:len() do
+		letter = str:sub(i, i)
+
+		count = count + (util.get_bit(letter) ~= nil and 1 or 0)
+	end
+
+	return count, math.floor(count / util.BITS_PER_CHARACTER)
 end
 
 return util
