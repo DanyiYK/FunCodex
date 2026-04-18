@@ -36,7 +36,7 @@ util.LOWER_SIMILAR_CHARACTERS = {
 	["с"] = "c",
 }
 util.SPECIAL_SIMILAR_CHARACTERS = {
-	[" "] = "?", -- TODO change this to an empty character
+	[" "] = " ", -- TODO change this to an empty character
 }
 
 util.REGISTERED_CHARMAPS = {
@@ -45,8 +45,9 @@ util.REGISTERED_CHARMAPS = {
 	util.SPECIAL_SIMILAR_CHARACTERS,
 }
 
+-- List of characters that can be encoded
 util.ENCODABLE_CHARACTERS = setmetatable(
-	(function() -- List of characters that can be encoded
+	(function()
 		local str = "abcdefghijklmnopqrstuvwxyz "
 		local tb = {}
 		for i = 1, str:len() do
@@ -55,13 +56,15 @@ util.ENCODABLE_CHARACTERS = setmetatable(
 		return tb
 	end)(),
 	{
-		__index = function(self, i)
-			if i == util.EMPTY_CHAR_BIT then
+		--[[	__index = function(self, i)
+			if #self >= i then
+				return rawget(self, i)
+			elseif i == util.EMPTY_CHAR_BIT then
 				return ""
 			end
 
 			return "[?]"
-		end,
+		end,]]
 	}
 )
 
