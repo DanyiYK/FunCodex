@@ -1,9 +1,47 @@
 local util = {}
 
+util.BITS_PER_CHARACTER = 5
+
+-- Char maps
+util.UPPER_SIMILAR_CHARACTERS = { -- List of characters that are only similar in uppercase
+	["М"] = "M",
+	["Т"] = "T",
+	["Н"] = "H",
+	["В"] = "B",
+	["З"] = "3",
+}
+util.SIMILAR_CHARACTERS = {
+	["М"] = "M",
+	["Т"] = "T",
+	["Н"] = "H",
+	["В"] = "B",
+	["З"] = "3",
+}
+util.SPECIAL_SIMILAR_CHARACTERS = {
+	[" "] = "?",
+}
+
+util.REGISTERED_CHARMAPS = {
+	util.UPPER_SIMILAR_CHARACTERS,
+	util.SIMILAR_CHARACTERS,
+	util.SPECIAL_SIMILAR_CHARACTERS,
+}
+
+util.ENCODABLE_CHARACTERS = (function() -- List of characters that can be encoded
+	local str = "abcdefghijklmnopqrstuvwxyz "
+	local tb = {}
+	for i = 1, str:len() do
+		tb[i] = str:sub(i, i)
+	end
+	return tb
+end)()
+
+util.EMPTY_CHAR_BIT = 28 -- Equal to ""
+
 function util.table_find(tb, value)
 	for k, v in ipairs(tb) do
 		if value == v then
-			return value
+			return k
 		end
 	end
 
@@ -39,6 +77,7 @@ function util.decimal_to_binary(number, size)
 	return return_value
 end
 
+-- Takes a table of bits and turns it into a number
 function util.binary_to_decimal(binary_table)
 	local return_value = 0
 
