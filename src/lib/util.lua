@@ -39,10 +39,21 @@ util.SPECIAL_SIMILAR_CHARACTERS = {
 	[" "] = " ", -- TODO change this to an empty character
 }
 
+-- This is an experimental charset (I don't know if they're really similar)
+util.TEST_CHARACTERS = {
+	["ԁ"] = "d",
+	["һ"] = "h",
+	["і"] = "i",
+	["ј"] = "j",
+	["ѕ"] = "ѕ",
+	["ⅼ"] = "l", -- This one is not really similar
+}
+
 util.REGISTERED_CHARMAPS = {
 	util.UPPER_SIMILAR_CHARACTERS,
 	util.LOWER_SIMILAR_CHARACTERS,
 	util.SPECIAL_SIMILAR_CHARACTERS,
+	util.TEST_CHARACTERS,
 }
 
 -- List of characters that can be encoded
