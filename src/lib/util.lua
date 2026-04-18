@@ -68,7 +68,7 @@ util.ENCODABLE_CHARACTERS = setmetatable(
 	}
 )
 
-util.EMPTY_CHAR_BIT = 28 -- Equal to ""
+util.EMPTY_CHAR_BIT = 0 -- Equal to ""
 
 function util.table_find(tb, value)
 	for k, v in ipairs(tb) do

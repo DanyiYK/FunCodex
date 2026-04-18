@@ -34,10 +34,8 @@ function encoder.encode(str, hidden_text)
 
 	if hidden_text_len > max_characters then
 		print("WARNING: Hidden text is too long to be hidden in this string, it will be cut!")
-	elseif hidden_text_len < max_characters then -- Fill unusued bits with empty characters
-		for i = hidden_text_len+1, max_characters do
-			hidden_text_binary[i] = util.decimal_to_binary(util.EMPTY_CHAR_BIT, util.BITS_PER_CHARACTER)
-		end
+	elseif hidden_text_len < max_characters then -- Insert stop signal, so the decoder knows when the text ends
+		table.insert(hidden_text_binary, util.decimal_to_binary(util.EMPTY_CHAR_BIT, util.BITS_PER_CHARACTER))
 	end
 
 	-- Turn raw binary to FunCodex binary
