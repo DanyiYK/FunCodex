@@ -62,7 +62,7 @@ util.REGISTERED_CHARMAPS = {
 
 -- List of characters that can be encoded
 util.ENCODABLE_CHARACTERS = (function()
-	local str = "abcdefghijklmnopqrstuvwxyz :3.,~"
+	local str = "abcdefghijklmnopqrstuvwxyz :3.,"
 	local tb = {}
 	for i = 1, str:len() do
 		tb[i] = str:sub(i, i)
