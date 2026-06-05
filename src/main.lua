@@ -1,6 +1,15 @@
-local Encoder = require("./lib/encoder")
-local Decoder = require("./lib/decoder")
-local Util = require("./lib/util")
+local source = debug.getinfo(1, "S").source
+
+if source:sub(1, 1) == "@" then
+	source = source:sub(2)
+end
+
+local base = source:match("(.*/)") or "./"
+
+package.path = base .. "lib/?.lua;" .. package.path
+local Encoder = require("encoder")
+local Decoder = require("decoder")
+local Util = require("util")
 
 local action = arg[1]
 local str = arg[2]

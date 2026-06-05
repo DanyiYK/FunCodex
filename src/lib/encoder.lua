@@ -1,4 +1,4 @@
-local util = require("lib/util")
+local util = require("util")
 local encoder = {}
 
 local function get_encoded_letter(charmap, letter, bit)

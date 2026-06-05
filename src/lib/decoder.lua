@@ -1,5 +1,5 @@
-local util = require("lib/util")
-local ustring = require("lib/utf8string")
+local util = require("util")
+local ustring = require("utf8string")
 
 local decoder = {}
 
