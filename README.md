@@ -11,30 +11,76 @@ This doesn't mean that it's *useless* though, I mean look at it, if you want to 
 
 Apart from that, I don't even know if there's already something like this, if so, let me know, I want to specify that I'm not trying to copy anyone, I had this idea on my own but I also acknowledge the fact that the web is vast and it's easy to have similar ideas.
 
-## How to use
-0. Install Lua
+# Installation
 
-1. Clone the repository wherever you want
+## Arch Linux
+
+You can install FunCodex using the provided PKGBUILD.
+
 ```sh
 git clone "https://github.com/DanyiYK/FunCodex/"
+cd funcodex
+makepkg -si
+
 ```
 
-2. Go in the src directory
+## Manual Installation
+
+#### Requirements
+
+* Lua 
+
+Install Lua using your package manager:
+
+* **Debian**
+
+  ```sh
+  sudo apt install lua
+  ```
+
+* **Fedora**
+
+  ```sh
+  sudo dnf install lua
+  ```
+
+---
+
+#### Setup
+
 ```sh
-cd ./FunCodex/src
+git clone https://github.com/DanyiYK/FunCodex
+cd FunCodex/src
 ```
 
-3. Crypt your first message!
+---
+
+## Usage
+
+### 1. Encrypt a message
+
 ```sh
 lua main.lua crypt "\"The quick brown fox jumps over the lazy dog\" is an English-language pangram – a sentence that contains all 26 letters of the English alphabet.\"" "example"
-CRYPTED TEXT:
-"Тhе quiсk brown fох jumрs оver the lаzy dоg" is аn English-languаgе рangrаm – а sеntеnce that contains all 26 letters of the English alphabet."
 ```
 
-4. Decrypt the message
-To decrypt a message, copy the result of the encryption and paste it in the decrypt command, like this:
+**Output:**
+
+```
+CRYPTED TEXT:
+"Тhе quiсk brown fох jumрs оver the lаzy dоg" is аn English-languаgе рangrаm – а sеntеnce that contains all 26 letters of the English alphabet.
+```
+
+### 2. Decrypt a message
+
+Copy the encrypted text and run:
+
 ```sh
 lua main.lua decrypt "\"Тhе quiсk brown fох jumрs оver the lаzy dоg\" is аn English-languаgе рangrаm – а sеntеnce that contains all 26 letters of the English alphabet."
+```
+
+**Output:**
+
+```
 DECRYPTED TEXT:
 "example"
 ```
