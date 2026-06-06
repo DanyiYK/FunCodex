@@ -1,0 +1,40 @@
+.TH FUNCODEX 1 "2026-06-06" "funcodex 0.2.0"
+.SH NAME
+funcodex \- Simple text encoder made in Lua
+
+.SH SYNOPSIS
+funcodex [COMMAND] [ARGS]
+
+.SH DESCRIPTION
+funcodex is a Lua-based tool to encode and decode hidden text within UTF-8 strings.
+
+.SH COMMANDS
+
+.TP
+.B length, -l
+Show available bit capacity and maximum hidden characters in a string.
+
+.TP
+.B crypt, -c
+Encode hidden text into a string.
+
+.TP
+.B decrypt, -d
+Extract hidden text from a string.
+
+.SH EXAMPLES
+
+.TP
+funcodex length "hello world"
+
+.TP
+funcodex crypt "hello world" "secret"
+
+.TP
+funcodex -d "encoded_string"
+
+.SH AUTHOR
+DanyiYK
+
+.SH LICENSE
+MIT
