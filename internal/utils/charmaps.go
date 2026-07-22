@@ -62,6 +62,6 @@ var RegisteredCharmaps = [4]map[string]string{
 
 var EncodableCharacters []string = strings.Split("abcdefghijklmnopqrstuvwxyz :3.,", "")
 
-var EmptyCharBit = 0 // Special bit that tells the decoder to stop and return the result
+var EmptyCharBit = len(EncodableCharacters) // Special bit that tells the decoder to stop and return the result
 
 const BitsPerCharacter = 5 // Number of bits that makes a char

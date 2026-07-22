@@ -29,14 +29,18 @@ func TableFind(mapToIterate map[string]string, valueToFind string) string {
 func IntegerToBinary(number int, size int) [BitsPerCharacter]int {
 	//fmt.Print(number)
 	binaryNumber := fmt.Sprintf("%b", number)
+	splittedBinaryNumber := strings.Split(binaryNumber, "")
+
 	returnVal := [BitsPerCharacter]int{}
 
 	// Add zeros to it to match the requested size
 	if len(binaryNumber) < BitsPerCharacter {
-		for i := 0; i <= (BitsPerCharacter - len(binaryNumber)); i++ {
+		for i := 0; i < (BitsPerCharacter - len(splittedBinaryNumber)); i++ {
 			binaryNumber = "0" + binaryNumber
 		}
 	}
+
+	fmt.Println(binaryNumber)
 
 	for i, bit := range strings.Split(binaryNumber, "") {
 		if bit == "0" {

@@ -40,8 +40,7 @@ func Encode(str string, hiddenText string) string {
 		}
 
 		letter := splittedString[i]
-		found := utils.ArrayFind(utils.EncodableCharacters, letter)
-		fmt.Println(letter, found, utils.IntegerToBinary(found, utils.BitsPerCharacter))
+		found := utils.ArrayFind(utils.EncodableCharacters, strings.ToLower(letter))
 
 		if found != -1 {
 			hiddenTextBinary = append(hiddenTextBinary, utils.IntegerToBinary(found, utils.BitsPerCharacter))
@@ -62,24 +61,23 @@ func Encode(str string, hiddenText string) string {
 
 	for i := range splittedMainString {
 		letter := splittedMainString[i]
-
 		bitValue, letterCharmap := utils.GetBit(letter)
 
-		if cursor != 0 && parsingPosition == 0 {
+		if cursor > 0 && parsingPosition < 1 {
 			cursor--
 			parsing = hiddenTextBinary[cursor]
 			parsingPosition = utils.BitsPerCharacter
-
-			fmt.Println(parsing)
 		}
 
-		if bitValue == -1 || cursor == 0 {
+		if bitValue == -1 || cursor == 0 && parsingPosition < 1 {
 			returnValue = returnValue + letter
 			continue
 		}
 
 		parsingPosition--
-		returnValue = returnValue + getEncodedLetter(letterCharmap, letter, parsing[parsingPosition])
+		encodedLetter := getEncodedLetter(letterCharmap, letter, parsing[utils.BitsPerCharacter-1-parsingPosition])
+
+		returnValue = returnValue + encodedLetter
 	}
 
 	return returnValue
