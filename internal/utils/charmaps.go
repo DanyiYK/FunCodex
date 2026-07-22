@@ -64,4 +64,4 @@ var EncodableCharacters []string = strings.Split("abcdefghijklmnopqrstuvwxyz :3.
 
 var EmptyCharBit = 0 // Special bit that tells the decoder to stop and return the result
 
-var BitsPerCharacter = 5 // Number of bits that makes a char
+const BitsPerCharacter = 5 // Number of bits that makes a char

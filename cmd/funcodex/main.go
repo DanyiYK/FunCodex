@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Danyiyk/FunCodex/internal/encoder"
 	"github.com/Danyiyk/FunCodex/internal/utils"
 )
 
@@ -40,7 +41,7 @@ func main() {
 
 		hidden_text := os.Args[3]
 
-		fmt.Println("Encrypt function:", text, hidden_text)
+		fmt.Println(encoder.Encode(text, hidden_text))
 
 	case "-d":
 		fmt.Println("Decrypt function:", text)

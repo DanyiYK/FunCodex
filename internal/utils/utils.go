@@ -6,6 +6,16 @@ import (
 	"strings"
 )
 
+func ArrayFind(arrayToIterate []string, valueToFind string) int {
+	for i, v := range arrayToIterate {
+		if v == valueToFind {
+			return i
+		}
+	}
+
+	return -1
+}
+
 func TableFind(mapToIterate map[string]string, valueToFind string) string {
 	for k, v := range mapToIterate {
 		if k == valueToFind {
@@ -16,8 +26,10 @@ func TableFind(mapToIterate map[string]string, valueToFind string) string {
 	return ""
 }
 
-func IntegerToBinary(number int, size int) string {
+func IntegerToBinary(number int, size int) [BitsPerCharacter]int {
+	//fmt.Print(number)
 	binaryNumber := fmt.Sprintf("%b", number)
+	returnVal := [BitsPerCharacter]int{}
 
 	// Add zeros to it to match the requested size
 	if len(binaryNumber) < size {
@@ -26,15 +38,25 @@ func IntegerToBinary(number int, size int) string {
 		}
 	}
 
-	return binaryNumber
+	for i, bit := range strings.Split(binaryNumber, "") {
+		if bit == "0" {
+			returnVal[i] = 0
+			continue
+		}
+
+		returnVal[i] = 1
+	}
+
+	//fmt.Println(returnVal)
+
+	return returnVal
 }
 
-func BinaryToInteger(binaryNumber string) int {
-	splittedString := strings.Split(binaryNumber, "")
+func BinaryToInteger(binaryNumber [BitsPerCharacter]int) int {
 	returnVal := 0
 
-	for i := len(splittedString) - 1; i >= 0; i-- {
-		if splittedString[i] == "0" {
+	for i := BitsPerCharacter - 1; i >= 0; i-- {
+		if binaryNumber[i] == 0 {
 			continue
 		}
 
@@ -89,3 +111,25 @@ func GetAvailableSpace(text string) (encodableCharCount int, hiddenTextSize int)
 
 	return count, int(math.Floor(float64(count) / float64(BitsPerCharacter)))
 }
+
+func PopHiddenTextBinary(intArray [][BitsPerCharacter]int) (array [][BitsPerCharacter]int, value [BitsPerCharacter]int) {
+	newArray := [][BitsPerCharacter]int{}
+	lastValue := intArray[len(intArray)-1]
+
+	for i := 0; i < len(intArray)-1; i++ {
+		newArray[i] = intArray[i]
+	}
+
+	return newArray, lastValue
+}
+
+/*func PopParsing(intArray [BitsPerCharacter]int) (array []int, value int) {
+	newArray := [BitsPerCharacter]int{}
+	lastValue := intArray[len(intArray)-1]
+
+	for i := 0; i < len(intArray)-1; i++ {
+		newArray[i] = intArray[i]
+	}
+
+	return newArray, lastValue
+}*/
