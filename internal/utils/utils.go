@@ -32,8 +32,8 @@ func IntegerToBinary(number int, size int) [BitsPerCharacter]int {
 	returnVal := [BitsPerCharacter]int{}
 
 	// Add zeros to it to match the requested size
-	if len(binaryNumber) < size {
-		for i := 0; i < (size - len(binaryNumber)); i++ {
+	if len(binaryNumber) < BitsPerCharacter {
+		for i := 0; i <= (BitsPerCharacter - len(binaryNumber)); i++ {
 			binaryNumber = "0" + binaryNumber
 		}
 	}
@@ -46,8 +46,6 @@ func IntegerToBinary(number int, size int) [BitsPerCharacter]int {
 
 		returnVal[i] = 1
 	}
-
-	//fmt.Println(returnVal)
 
 	return returnVal
 }

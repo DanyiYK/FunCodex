@@ -41,6 +41,7 @@ func Encode(str string, hiddenText string) string {
 
 		letter := splittedString[i]
 		found := utils.ArrayFind(utils.EncodableCharacters, letter)
+		fmt.Println(letter, found, utils.IntegerToBinary(found, utils.BitsPerCharacter))
 
 		if found != -1 {
 			hiddenTextBinary = append(hiddenTextBinary, utils.IntegerToBinary(found, utils.BitsPerCharacter))
