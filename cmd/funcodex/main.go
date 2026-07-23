@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Danyiyk/FunCodex/internal/decoder"
 	"github.com/Danyiyk/FunCodex/internal/encoder"
 	"github.com/Danyiyk/FunCodex/internal/utils"
 )
@@ -44,7 +45,7 @@ func main() {
 		fmt.Println(encoder.Encode(text, hidden_text))
 
 	case "-d":
-		fmt.Println("Decrypt function:", text)
+		fmt.Println(decoder.Decode(text))
 
 	case "-l":
 		encodableCharacters, hiddenTextMaxLength := utils.GetAvailableSpace(text)

@@ -62,7 +62,7 @@ func BinaryToInteger(binaryNumber [BitsPerCharacter]int) int {
 			continue
 		}
 
-		returnVal += int(math.Pow(2, float64(i)))
+		returnVal += int(math.Pow(float64(2), float64(BitsPerCharacter-i-1)))
 	}
 
 	return returnVal
