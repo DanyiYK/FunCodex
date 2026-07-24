@@ -16,14 +16,7 @@ func Decode(encodedText string) string {
 	filling := [utils.BitsPerCharacter]int{}
 	cursor := 0
 
-	for _, letter := range splittedText {
-		if cursor == 5 {
-			cursor = 0
-			foundBinary = append(foundBinary, filling)
-
-			filling = [utils.BitsPerCharacter]int{}
-		}
-
+	for i, letter := range splittedText {
 		found, _ := utils.GetBit(letter)
 
 		if found != -1 {
@@ -31,6 +24,16 @@ func Decode(encodedText string) string {
 			cursor++
 		}
 
+		if cursor != 5 {
+			continue
+		}
+
+		cursor = 0
+		foundBinary = append(foundBinary, filling)
+
+		if i != len(splittedText)-1 {
+			filling = [utils.BitsPerCharacter]int{}
+		}
 	}
 
 	for i, binaryToDecode := range foundBinary {

@@ -93,7 +93,7 @@ func main() {
 
 		hidden_text = scanner.Text()
 
-		fmt.Printf("Encoding the %d character long hidden text", len(strings.Split(hidden_text, "")))
+		fmt.Printf("Encoding the %d character long hidden text\n", len(strings.Split(hidden_text, "")))
 
 		fmt.Println(`Encoded string: "` + encoder.Encode(text, hidden_text) + `"`)
 	default:
