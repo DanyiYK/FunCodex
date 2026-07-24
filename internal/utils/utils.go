@@ -40,8 +40,6 @@ func IntegerToBinary(number int, size int) [BitsPerCharacter]int {
 		}
 	}
 
-	fmt.Println(binaryNumber)
-
 	for i, bit := range strings.Split(binaryNumber, "") {
 		if bit == "0" {
 			returnVal[i] = 0
