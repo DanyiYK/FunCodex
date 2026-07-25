@@ -13,7 +13,7 @@ import (
 
 func PrintHelp() {
 	fmt.Println("Registered charmaps", len(utils.RegisteredCharmaps))
-	fmt.Println("Available commands:\n -l(ength) [text]\n -c(rypt) [text] [hidden_text]\n -d(ecrypt) [crypted_text]")
+	fmt.Println("Available commands:\n -l(ength) [text]\n -c(rypt) [text] [hidden_text]\n -d(ecrypt) [crypted_text]\n -lc(-lengthcrypt) [text_to_crypt]")
 }
 
 func main() {
